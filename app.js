@@ -59,7 +59,7 @@ function switchUser(user) {
   document.querySelectorAll('.user-pill').forEach(p => p.classList.remove('active'));
   document.getElementById(`pill-${user}`).classList.add('active');
   
-  const name = user === 'admin' ? 'Administrator' : 'Guru Prasadh';
+  const name = user === 'admin' ? 'Administrator' : 'Guru Prasad';
   document.getElementById('login-username').textContent = name;
   document.getElementById('login-avatar').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${user}`;
   
