@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guru Prasad C — Portfolio</title>
+  <meta name="description" content="Guru Prasad C — AI Developer & Full Stack Engineer. Interactive Windows 7-style portfolio." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ============================= BOOT SCREEN ============================= -->
+<div id="boot-screen">
+  <div id="bios-post">
+    Energy Star (R) Ally<br/>
+    Copyright (C) 1984-2009, American Megatrends, Inc.<br/><br/>
+    Main Processor : Intel(R) Core(TM) i9 CPU @ 5.00GHz<br/>
+    Memory Testing : 32768K OK<br/><br/>
+    Detecting Primary Master ... Loading User Profile<br/>
+    Detecting Primary Slave  ... Initializing Resume Data<br/>
+    Detecting Secondary Master ... Establishing Network<br/>
+    Detecting Secondary Slave  ... None<br/><br/>
+    <span class="blink">_</span>
+  </div>
+  <div id="win-starting" class="hidden">
+    <div class="win-logo-orbs">
+      <div class="orb red"></div>
+      <div class="orb green"></div>
+      <div class="orb blue"></div>
+      <div class="orb yellow"></div>
+    </div>
+    <div class="starting-text">Starting Windows</div>
+  </div>
+</div>
+
+<!-- ============================= LOGIN SCREEN ============================= -->
+<div id="login-screen">
+  <div class="login-bg-overlay"></div>
+
+  <!-- Clock top-right -->
+  <div class="login-clock" id="login-clock">
+    <div class="login-time" id="login-time">00:00</div>
+    <div class="login-date" id="login-date">Saturday, April 19, 2026</div>
+  </div>
+
+  <!-- User switcher bar -->
+  <div class="user-switcher">
+    <div class="user-pill active" id="pill-admin" onclick="switchUser('admin')">
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=admin" alt="Admin" />
+      <span>Administrator</span>
+    </div>
+    <div class="user-pill" id="pill-guru" onclick="switchUser('guru')">
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=guru" alt="Guru" />
+      <span>Guru Prasadh</span>
+    </div>
+  </div>
+
+  <!-- Login panel -->
+  <div class="login-panel">
+    <div class="login-avatar-wrapper">
+      <img id="login-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=admin" alt="User Avatar" class="login-avatar" />
+    </div>
+    <div class="login-username" id="login-username">Administrator</div>
+    <div class="login-pw-row">
+      <input type="password" id="login-password" class="login-password" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()" />
+      <button class="login-arrow-btn" onclick="doLogin()" title="Sign in">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="login-hint">Press Enter or click → to sign in</div>
+  </div>
+
+  <!-- Ease of access / bottom bar -->
+  <div class="login-bottom-bar">
+    <button class="login-ease-btn" title="Ease of Access"><i class="fa fa-universal-access"></i></button>
+    <button class="login-ease-btn" title="Network"><i class="fa fa-wifi"></i></button>
+    <button class="login-ease-btn" title="Power"><i class="fa fa-power-off"></i></button>
+  </div>
+</div>
+
+<!-- ============================= DESKTOP ============================= -->
+<div id="desktop" class="hidden">
+
+  <!-- Desktop icons -->
+  <div class="desktop-icons" id="desktop-icons">
+    <div class="desktop-icon" id="icon-computer" ondblclick="openWindow('computer')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/my-computer--v1.png" alt="My Computer" /></div>
+      <span>My Computer</span>
+    </div>
+    <div class="desktop-icon" id="icon-resume" ondblclick="openWindow('resume')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/pdf.png" alt="Resume" /></div>
+      <span>Resume.pdf</span>
+    </div>
+    <div class="desktop-icon" id="icon-projects" ondblclick="openWindow('projects')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/folder-invoices.png" alt="Projects" /></div>
+      <span>Projects</span>
+    </div>
+    <div class="desktop-icon" id="icon-contact" ondblclick="openWindow('contact')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/address-book.png" alt="Contact" /></div>
+      <span>Contact</span>
+    </div>
+    <div class="desktop-icon" id="icon-github" ondblclick="openWindow('github')">
+      <div class="icon-img"><img src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub" /></div>
+      <span>GitHub</span>
+    </div>
+    <div class="desktop-icon" id="icon-linkedin" ondblclick="openLinkedIn()">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn" /></div>
+      <span>LinkedIn</span>
+    </div>
+    <div class="desktop-icon" id="icon-skills" ondblclick="openWindow('skills')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/source-code.png" alt="Skills" /></div>
+      <span>Skills</span>
+    </div>
+    <div class="desktop-icon" id="icon-terminal" ondblclick="openWindow('terminal')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/console.png" alt="Terminal" /></div>
+      <span>Terminal</span>
+    </div>
+    <div class="desktop-icon" id="icon-recycle" ondblclick="openWindow('recycle')">
+      <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/recycle-bin.png" alt="Recycle Bin" /></div>
+      <span>Recycle Bin</span>
+    </div>
+  </div>
+
+  <!-- AI Assistant Widget (Clippy) -->
+  <div id="ai-assistant-widget" onclick="openAIAssistant()">
+    <img src="https://img.icons8.com/fluency/48/000000/bot.png" alt="AI" class="ai-bot-icon" />
+    <div class="ai-speech-bubble" id="ai-greeting">Hi, I'm Guru's AI! Click me.</div>
+  </div>
+
+  <!-- Windows container -->
+  <div id="windows-container"></div>
+
+  <!-- Right-click context menu -->
+  <div id="context-menu" class="context-menu hidden">
+    <ul>
+      <li onclick="ctxAction('view')"><i class="fa fa-th"></i> View</li>
+      <li onclick="ctxAction('sort')"><i class="fa fa-sort"></i> Sort By</li>
+      <li class="divider"></li>
+      <li onclick="ctxAction('refresh')"><i class="fa fa-sync"></i> Refresh</li>
+      <li class="divider"></li>
+      <li onclick="ctxAction('personalize')"><i class="fa fa-palette"></i> Personalize</li>
+    </ul>
+  </div>
+
+  <!-- ============================= TASKBAR ============================= -->
+  <div id="taskbar">
+    <!-- Start button -->
+    <button id="start-btn" onclick="toggleStartMenu()">
+      <svg width="34" height="34" viewBox="0 0 34 34" class="win-orb">
+        <defs>
+          <radialGradient id="orbGrad" cx="50%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#6ac8ff"/>
+            <stop offset="50%" stop-color="#0078d7"/>
+            <stop offset="100%" stop-color="#003f8a"/>
+          </radialGradient>
+        </defs>
+        <circle cx="17" cy="17" r="16" fill="url(#orbGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+        <text x="17" y="22" text-anchor="middle" font-size="14" fill="white" font-family="Arial">⊞</text>
+      </svg>
+      <span>Start</span>
+    </button>
+
+    <!-- Quick launch -->
+    <div class="quick-launch">
+      <button class="ql-btn" onclick="openWindow('resume')" title="Resume"><i class="fa fa-file-pdf"></i></button>
+      <button class="ql-btn" onclick="openWindow('projects')" title="Projects"><i class="fa fa-folder"></i></button>
+      <button class="ql-btn" onclick="openWindow('terminal')" title="Terminal"><i class="fa fa-terminal"></i></button>
+    </div>
+
+    <div class="taskbar-divider"></div>
+
+    <!-- Open windows -->
+    <div id="taskbar-windows"></div>
+
+    <!-- System tray -->
+    <div class="system-tray">
+      <i class="fa fa-wifi tray-icon" title="Network"></i>
+      <i class="fa fa-volume-up tray-icon" title="Volume"></i>
+      <div class="tray-clock">
+        <div id="tray-time">00:00</div>
+        <div id="tray-date">4/19/2026</div>
+      </div>
+      <div class="show-desktop-btn" onclick="minimizeAllWindows()" title="Show Desktop"></div>
+    </div>
+  </div>
+
+  <!-- ============================= START MENU ============================= -->
+  <div id="start-menu" class="hidden">
+    <div class="start-menu-header">
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=guru" alt="User" class="sm-avatar" />
+      <span class="sm-username">Guru Prasad C</span>
+    </div>
+    <div class="start-menu-body">
+      <div class="sm-left">
+        <div class="sm-section-title">Pinned</div>
+        <div class="sm-item" onclick="openWindow('resume');toggleStartMenu()"><i class="fa fa-file-pdf"></i> Resume</div>
+        <div class="sm-item" onclick="openWindow('projects');toggleStartMenu()"><i class="fa fa-folder-open"></i> Projects</div>
+        <div class="sm-item" onclick="openWindow('contact');toggleStartMenu()"><i class="fa fa-address-card"></i> Contact</div>
+        <div class="sm-item" onclick="openWindow('github');toggleStartMenu()"><i class="fab fa-github"></i> GitHub</div>
+        <div class="sm-item" onclick="openWindow('skills');toggleStartMenu()"><i class="fa fa-code"></i> Skills</div>
+        <div class="sm-item" onclick="openWindow('terminal');toggleStartMenu()"><i class="fa fa-terminal"></i> Terminal</div>
+        <div class="sm-divider"></div>
+        <div class="sm-item" onclick="openWindow('computer');toggleStartMenu()"><i class="fa fa-desktop"></i> My Computer</div>
+      </div>
+      <div class="sm-right">
+        <div class="sm-item" onclick="openWindow('resume');toggleStartMenu()"><i class="fa fa-user"></i> Documents</div>
+        <div class="sm-item" onclick="openWindow('computer');toggleStartMenu()"><i class="fa fa-desktop"></i> Computer</div>
+        <div class="sm-item" onclick="openWindow('contact');toggleStartMenu()"><i class="fa fa-cog"></i> Control Panel</div>
+        <div class="sm-divider"></div>
+        <div class="sm-item" onclick="openWindow('recycle');toggleStartMenu()"><i class="fa fa-trash"></i> Recycle Bin</div>
+      </div>
+    </div>
+    <div class="start-menu-footer">
+      <button class="sm-shutdown" onclick="shutdownEffect()"><i class="fa fa-power-off"></i> Shut Down</button>
+    </div>
+  </div>
+
+</div><!-- #desktop -->
+
+<!-- ========================= WINDOW TEMPLATES (hidden) ========================= -->
+<template id="tpl-resume">
+  <div id="win-resume-content"></div>
+</template>
+<template id="tpl-projects">
+  <div id="win-projects-content"></div>
+</template>
+<template id="tpl-contact">
+  <div id="win-contact-content"></div>
+</template>
+<template id="tpl-github">
+  <div id="win-github-content"></div>
+</template>
+<template id="tpl-skills">
+  <div id="win-skills-content"></div>
+</template>
+<template id="tpl-terminal">
+  <div id="win-terminal-content"></div>
+</template>
+<template id="tpl-computer">
+  <div id="win-computer-content"></div>
+</template>
+<template id="tpl-recycle">
+  <div id="win-recycle-content"></div>
+</template>
+
+<template id="tpl-ai">
+  <div id="win-ai-content"></div>
+</template>
+
+<!-- ============================= BSOD SCREEN ============================= -->
+<div id="bsod-screen" class="hidden">
+  <div class="bsod-text">
+    A problem has been detected and Windows has been shut down to prevent damage to your computer.<br/><br/>
+    DRIVER_IRQL_NOT_LESS_OR_EQUAL<br/><br/>
+    If this is the first time you've seen this stop error screen, restart your computer. If this screen appears again, follow these steps:<br/><br/>
+    Check to make sure any new hardware or software is properly installed.<br/>
+    If this is a new installation, ask your hardware or software manufacturer for any Windows updates you might need.<br/><br/>
+    Technical information:<br/>
+    *** STOP: 0x000000D1 (0x0000000000000000, 0x0000000000000002, 0x0000000000000000, 0xFFFFF88001234567)<br/><br/>
+    Collecting data for crash dump ...<br/>
+    Initializing disk for crash dump ...<br/>
+    Physical memory dump complete.<br/>
+    Contact your system admin or technical support group for further assistance.
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="app.js"></script>
+<script src="windows/resume.js"></script>
+<script src="windows/projects.js"></script>
+<script src="windows/contact.js"></script>
+<script src="windows/github.js"></script>
+<script src="windows/skills.js"></script>
+<script src="windows/terminal.js"></script>
+<script src="windows/computer.js"></script>
+<script src="windows/recycle.js"></script>
+<script src="windows/computer.js"></script>
+<script src="windows/recycle.js"></script>
+<script src="windows/ai.js"></script>
+<script>
+  window.GROQ_API_KEY = "YOUR_GROQ_API_KEY_HERE"; // NOTE: Replace this with your actual key in production or use a backend!
+</script>
+</body>
+</html>

@@ -1,0 +1,710 @@
+:root {
+  --win-blue: #0078D7;
+  --taskbar-bg: rgba(20, 30, 50, 0.6);
+  --taskbar-grad: linear-gradient(to bottom, rgba(30, 144, 255, 0.7), rgba(65, 105, 225, 0.8));
+  --title-grad: linear-gradient(to bottom, #00c0ff, #0078d7);
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow: hidden; /* Prevent scrolling on desktop */
+  background-color: #000;
+  user-select: none;
+}
+
+/* ==================== LOGIN SCREEN ==================== */
+#login-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1b6ca8, #0d3b6e);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.login-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/bliss.png') center/cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.login-clock {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  text-align: right;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.login-time { font-size: 3rem; font-weight: 300; }
+.login-date { font-size: 1.2rem; }
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: translateY(-20px);
+}
+
+.login-avatar-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
+  border: 3px solid rgba(255,255,255,0.8);
+  overflow: hidden;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  background: #fff;
+}
+.login-avatar { width: 100%; height: 100%; object-fit: cover; }
+
+.login-username {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.login-pw-row {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 3px;
+  padding: 2px;
+  width: 250px;
+}
+.login-password {
+  flex: 1;
+  border: none;
+  padding: 8px 10px;
+  outline: none;
+}
+.login-arrow-btn {
+  background: #0078d7;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.login-arrow-btn:hover { background: #005a9e; }
+.login-hint {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.user-switcher {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.user-pill:hover, .user-pill.active {
+  background: rgba(255,255,255,0.2);
+}
+.user-pill img { width: 40px; height: 40px; border-radius: 3px; background:#fff;}
+
+.login-bottom-bar {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+}
+.login-ease-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.login-ease-btn:hover { opacity: 1; }
+
+/* ==================== DESKTOP ==================== */
+#desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('assets/bliss.png') center/cover no-repeat;
+  background-color: #0078D7; /* Fallback */
+}
+#desktop.hidden { display: none; }
+
+.desktop-icons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: calc(100vh - 40px);
+  padding: 10px;
+  gap: 10px;
+}
+
+.desktop-icon {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.desktop-icon .icon-img {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+}
+.desktop-icon .icon-img img {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
+.desktop-icon span { font-size: 0.8rem; line-height: 1.2; }
+
+/* Context Menu */
+.context-menu {
+  position: absolute;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10000;
+  min-width: 150px;
+}
+.context-menu.hidden { display: none; }
+.context-menu ul { list-style: none; padding: 5px 0; }
+.context-menu li {
+  padding: 5px 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #333;
+}
+.context-menu li:hover { background: #e0e0e0; }
+.context-menu li i { width: 20px; color: #666; }
+.context-menu .divider {
+  height: 1px;
+  background: #ccc;
+  margin: 5px 0;
+  padding: 0;
+}
+
+/* ==================== TASKBAR ==================== */
+#taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: var(--taskbar-grad);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  z-index: 9000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+#start-btn {
+  background: transparent;
+  border: none;
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+#start-btn:hover .win-orb circle { fill: url(#orbGrad); filter: brightness(1.2); }
+#start-btn span { display: none; }
+
+.quick-launch {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+.ql-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: white;
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 0 2px;
+}
+.ql-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); }
+
+.taskbar-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.3);
+  margin: 0 5px;
+}
+
+#taskbar-windows {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 5px;
+  gap: 2px;
+  overflow-x: auto;
+}
+.taskbar-window-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s;
+}
+.taskbar-window-btn:hover { background: rgba(255,255,255,0.3); }
+.taskbar-window-btn.active { background: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.6); box-shadow: inset 0 0 5px rgba(0,0,0,0.2); }
+
+.system-tray {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-right: 5px;
+  color: white;
+}
+.tray-icon { margin: 0 8px; font-size: 1rem; cursor: pointer; }
+.tray-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  padding: 0 10px;
+  cursor: pointer;
+  line-height: 1.1;
+}
+.tray-clock:hover { background: rgba(255,255,255,0.2); }
+.show-desktop-btn {
+  width: 15px;
+  height: 100%;
+  border-left: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+}
+.show-desktop-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ==================== START MENU ==================== */
+#start-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 380px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  box-shadow: 2px -2px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  transform-origin: bottom left;
+}
+#start-menu.hidden { transform: scaleY(0); opacity: 0; pointer-events: none; }
+
+.start-menu-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.sm-avatar { width: 40px; height: 40px; border-radius: 3px; border: 1px solid #ccc; background:#fff;}
+.sm-username { font-size: 1.1rem; font-weight: 600; color: #333; }
+
+.start-menu-body {
+  flex: 1;
+  display: flex;
+}
+.sm-left {
+  flex: 1;
+  background: #fff;
+  padding: 10px;
+  overflow-y: auto;
+}
+.sm-right {
+  width: 140px;
+  background: #e4eaf5;
+  padding: 10px;
+  border-left: 1px solid #ccc;
+}
+
+.sm-section-title { font-size: 0.8rem; color: #666; margin-bottom: 5px; font-weight: bold; }
+.sm-item {
+  padding: 8px 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+  font-size: 0.9rem;
+}
+.sm-item:hover { background: #d9eaf9; }
+.sm-item i { width: 20px; text-align: center; color: #555; }
+.sm-divider { height: 1px; background: #ddd; margin: 5px 0; }
+
+.start-menu-footer {
+  padding: 10px;
+  background: rgba(255,255,255,0.5);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: flex-end;
+}
+.sm-shutdown {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 3px;
+}
+.sm-shutdown:hover { background: rgba(0,0,0,0.1); border-color: rgba(0,0,0,0.2); }
+
+/* ==================== WINDOWS ==================== */
+.win7-window {
+  position: absolute;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.win-titlebar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.win7-window.active .win-titlebar {
+  background: rgba(150, 200, 255, 0.6);
+}
+
+.win-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+}
+.win-controls { display: flex; gap: 2px; }
+.win-btn {
+  width: 28px;
+  height: 20px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+.win-btn:hover { background: rgba(255,255,255,0.5); border-color: rgba(0,0,0,0.2); }
+.win-btn-close:hover { background: #e81123; color: white; border-color: #e81123; }
+
+.win-content {
+  flex: 1;
+  overflow: auto;
+  background: #fff;
+  position: relative;
+}
+
+/* App specific styles will be injected by their JS files or handled globally here */
+
+/* Resume specific */
+.resume-container { padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto; }
+.resume-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0078D7; padding-bottom: 10px; }
+.resume-header h1 { color: #0078D7; margin-bottom: 5px; }
+.resume-section { margin-bottom: 20px; }
+.resume-section h2 { color: #0078D7; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px; font-size: 1.2rem; }
+.resume-item { margin-bottom: 15px; }
+.resume-item-header { display: flex; justify-content: space-between; font-weight: bold; }
+.resume-item ul { padding-left: 20px; margin-top: 5px; }
+
+/* Projects specific */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; padding: 20px; }
+.project-card { border: 1px solid #ddd; border-radius: 5px; padding: 15px; background: #f9f9f9; transition: transform 0.2s; cursor: pointer; }
+.project-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.project-title { font-weight: bold; color: #0078D7; margin-bottom: 5px; font-size: 1.1rem; }
+.project-desc { font-size: 0.9rem; color: #555; margin-bottom: 10px; }
+.project-meta { display: flex; gap: 10px; font-size: 0.8rem; color: #777; }
+.project-meta span { display: flex; align-items: center; gap: 3px; }
+
+/* Terminal specific */
+.terminal-container { background: #000; color: #fff; font-family: 'Roboto Mono', monospace; padding: 10px; height: 100%; box-sizing: border-box; overflow-y: auto; }
+.terminal-output { margin-bottom: 10px; white-space: pre-wrap;}
+.terminal-input-line { display: flex; align-items: center; }
+.terminal-prompt { color: #0f0; margin-right: 5px; }
+.terminal-input { background: transparent; border: none; color: #fff; font-family: inherit; font-size: inherit; flex: 1; outline: none; }
+
+/* Contact specific */
+.contact-container { padding: 20px; display: flex; gap: 20px; }
+.contact-info { flex: 1; }
+.contact-form { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.contact-form input, .contact-form textarea { padding: 8px; border: 1px solid #ccc; border-radius: 3px; font-family: inherit; }
+.contact-form textarea { resize: vertical; min-height: 100px; }
+.contact-form button { padding: 10px; background: #0078D7; color: white; border: none; border-radius: 3px; cursor: pointer; }
+.contact-form button:hover { background: #005a9e; }
+.social-links { margin-top: 20px; display: flex; gap: 10px; }
+.social-link { padding: 10px; background: #eee; border-radius: 5px; text-decoration: none; color: #333; display: flex; align-items: center; gap: 5px; transition: background 0.2s;}
+.social-link:hover { background: #ddd; }
+
+/* GitHub specific */
+.github-container { padding: 20px; }
+.github-profile { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+.github-avatar { width: 100px; height: 100px; border-radius: 50%; }
+.github-stats { display: flex; gap: 15px; margin-top: 10px; }
+.stat-box { background: #f0f0f0; padding: 10px; border-radius: 5px; text-align: center; }
+.stat-value { font-weight: bold; font-size: 1.2rem; }
+
+/* Computer specific */
+.computer-container { display: flex; height: 100%; }
+.computer-sidebar { width: 200px; background: #f0f0f0; border-right: 1px solid #ccc; padding: 10px; overflow-y: auto;}
+.computer-content { flex: 1; padding: 20px; background: #fff; overflow-y: auto;}
+.drive-item { display: flex; align-items: center; gap: 15px; padding: 10px; border: 1px solid transparent; cursor: pointer; }
+.drive-item:hover { background: #e5f3ff; border-color: #cce8ff; }
+.drive-icon { font-size: 2rem; color: #666; }
+.drive-info { flex: 1; }
+.drive-name { font-weight: bold; }
+.drive-bar-bg { height: 15px; background: #e0e0e0; border: 1px solid #ccc; margin-top: 5px; border-radius: 2px; }
+.drive-bar-fill { height: 100%; background: #0078d7; }
+.drive-bar-fill.warning { background: #d70000; }
+.drive-text { font-size: 0.8rem; color: #666; margin-top: 2px; }
+
+/* ==================== BOOT SCREEN ==================== */
+#boot-screen {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: black;
+  color: #ccc;
+  font-family: 'Consolas', 'Courier New', monospace;
+  z-index: 20000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#bios-post {
+  position: absolute;
+  top: 20px; left: 20px;
+  font-size: 1.1rem;
+}
+.blink { animation: blinker 1s linear infinite; }
+@keyframes blinker { 50% { opacity: 0; } }
+
+#win-starting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#win-starting.hidden { display: none; }
+.win-logo-orbs {
+  position: relative;
+  width: 100px; height: 100px;
+  margin-bottom: 20px;
+  animation: logo-form 3s ease-in-out forwards;
+}
+.orb {
+  position: absolute;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px inset rgba(255,255,255,0.8);
+  opacity: 0;
+}
+.orb.red { background: #f03126; top: 10px; left: -50px; animation: fly-in-red 2s forwards 0.5s; }
+.orb.green { background: #7ab800; top: -30px; left: 50px; animation: fly-in-green 2s forwards 0.5s; }
+.orb.blue { background: #00a4ef; top: 50px; left: 50px; animation: fly-in-blue 2s forwards 0.5s; }
+.orb.yellow { background: #ffb900; top: 10px; left: 150px; animation: fly-in-yellow 2s forwards 0.5s; }
+
+@keyframes fly-in-red { to { top: 10px; left: 10px; opacity: 1; } }
+@keyframes fly-in-green { to { top: 10px; left: 50px; opacity: 1; } }
+@keyframes fly-in-blue { to { top: 50px; left: 10px; opacity: 1; } }
+@keyframes fly-in-yellow { to { top: 50px; left: 50px; opacity: 1; } }
+@keyframes logo-form { 100% { transform: scale(1.2); } }
+
+.starting-text {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0;
+  animation: fade-in 2s forwards 1s;
+}
+@keyframes fade-in { to { opacity: 1; } }
+
+/* ==================== BSOD SCREEN ==================== */
+#bsod-screen {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: #0000AA;
+  color: white;
+  font-family: 'Consolas', 'Courier New', monospace;
+  z-index: 30000;
+  padding: 50px;
+}
+#bsod-screen.hidden { display: none; }
+.bsod-text { font-size: 1.2rem; line-height: 1.5; }
+
+/* ==================== AI ASSISTANT WIDGET ==================== */
+#ai-assistant-widget {
+  position: absolute;
+  bottom: 60px; right: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+#ai-assistant-widget:hover { transform: scale(1.1); }
+.ai-bot-icon { width: 64px; height: 64px; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.4)); animation: float 3s ease-in-out infinite;}
+.ai-speech-bubble {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 15px 15px 15px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Chat window specific */
+.ai-chat-container { display: flex; flex-direction: column; height: 100%; background: #f5f5f5;}
+.ai-chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.chat-msg { max-width: 80%; padding: 10px; border-radius: 8px; line-height: 1.4; font-size: 0.9rem;}
+.chat-user { background: #0078D7; color: white; align-self: flex-end; border-bottom-right-radius: 0; }
+.chat-bot { background: white; color: #333; align-self: flex-start; border-bottom-left-radius: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.ai-chat-input { display: flex; padding: 10px; background: white; border-top: 1px solid #ddd; }
+.ai-chat-input input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 3px; outline: none; }
+.ai-chat-input button { padding: 8px 15px; background: #0078D7; color: white; border: none; border-radius: 3px; margin-left: 5px; cursor: pointer; }
+
+/* ==================== MOBILE RESPONSIVENESS ==================== */
+@media (max-width: 768px) {
+  /* Login Screen */
+  .login-panel { width: 90%; padding: 20px; }
+  .user-switcher { bottom: 60px; left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
+  .login-time { font-size: 3rem; }
+  .login-clock { top: 20px; right: 20px; }
+  
+  /* Desktop */
+  .desktop-icons { 
+    display: flex; flex-wrap: wrap; flex-direction: row; 
+    align-content: flex-start; padding: 10px; width: 100%;
+  }
+  .desktop-icon { margin: 10px; }
+  
+  /* Taskbar */
+  .quick-launch { display: none; }
+  .system-tray { display: none; }
+  #taskbar-windows { flex: 1; overflow-x: auto; white-space: nowrap; padding-right: 10px; }
+  
+  /* Start Menu */
+  #start-menu {
+    width: 100vw;
+    height: calc(100vh - 40px);
+    bottom: 40px;
+    left: 0;
+    border-radius: 0;
+    flex-direction: column;
+  }
+  .start-menu-body { flex-direction: column; flex: 1; overflow-y: auto; }
+  .sm-left, .sm-right { width: 100%; padding: 15px; }
+  
+  /* Windows */
+  .win7-window { max-width: 100vw !important; max-height: calc(100vh - 40px) !important; }
+  
+  /* AI Assistant */
+  #ai-assistant-widget { bottom: 60px; right: 10px; }
+  .ai-bot-icon { width: 48px; height: 48px; }
+  .ai-speech-bubble { display: none; } /* Hide to prevent overlapping */
+}
