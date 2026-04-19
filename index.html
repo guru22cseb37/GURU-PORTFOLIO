@@ -24,44 +24,43 @@
 <div id="login-screen">
   <div class="login-bg-overlay"></div>
 
-  <!-- Clock top-right -->
+  <!-- Clock top-left -->
   <div class="login-clock" id="login-clock">
     <div class="login-time" id="login-time">00:00</div>
-    <div class="login-date" id="login-date">Saturday, April 19, 2026</div>
+    <div class="login-date" id="login-date">Sunday, 19 April</div>
   </div>
 
-  <!-- User switcher bar -->
-  <div class="user-switcher">
-    <div class="user-pill active" id="pill-admin" onclick="switchUser('admin')">
-      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=admin" alt="Admin" />
-      <span>Administrator</span>
-    </div>
-    <div class="user-pill" id="pill-guru" onclick="switchUser('guru')">
-      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=guru" alt="Guru" />
-      <span>Guru Prasad</span>
-    </div>
-  </div>
-
-  <!-- Login panel -->
+  <!-- Main Login Panel - Centered -->
   <div class="login-panel">
     <div class="login-avatar-wrapper">
       <img id="login-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=admin" alt="User Avatar" class="login-avatar" />
     </div>
     <div class="login-username" id="login-username">Administrator</div>
     <div class="login-pw-row">
-      <input type="password" id="login-password" class="login-password" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()" />
+      <input type="password" id="login-password" class="login-password" placeholder="Sign in" onkeydown="if(event.key==='Enter') doLogin()" />
       <button class="login-arrow-btn" onclick="doLogin()" title="Sign in">
         <i class="fa fa-arrow-right"></i>
       </button>
     </div>
-    <div class="login-hint">Press Enter or click → to sign in</div>
   </div>
 
-  <!-- Ease of access / bottom bar -->
+  <!-- User switcher - Bottom Left -->
+  <div class="user-switcher">
+    <div class="user-pill active" id="pill-admin" onclick="switchUser('admin')">
+      <div class="user-pill-avatar"><i class="fa fa-user"></i></div>
+      <span>Administrator</span>
+    </div>
+    <div class="user-pill" id="pill-guru" onclick="switchUser('guru')">
+      <div class="user-pill-avatar"><i class="fa fa-user"></i></div>
+      <span>Guru Prasad</span>
+    </div>
+  </div>
+
+  <!-- Action icons - Bottom Right -->
   <div class="login-bottom-bar">
     <button class="login-ease-btn" title="Ease of Access"><i class="fa fa-universal-access"></i></button>
-    <button class="login-ease-btn" title="Network"><i class="fa fa-wifi"></i></button>
-    <button class="login-ease-btn" title="Power"><i class="fa fa-power-off"></i></button>
+    <button class="login-ease-btn" title="Settings"><i class="fa fa-sun"></i></button>
+    <button class="login-ease-btn" title="Power" onclick="shutdownEffect()"><i class="fa fa-power-off"></i></button>
   </div>
 </div>
 
