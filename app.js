@@ -22,7 +22,7 @@ setTimeout(() => {
       setTimeout(() => boot.style.display = 'none', 1000);
     }, 4000);
   }
-}, 3000);
+}, 800);
 
 // Audio setup
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
