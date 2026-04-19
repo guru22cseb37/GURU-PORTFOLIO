@@ -672,10 +672,16 @@ body {
 /* ==================== MOBILE RESPONSIVENESS ==================== */
 @media (max-width: 768px) {
   /* Login Screen */
-  .login-panel { width: 90%; padding: 20px; }
-  .user-switcher { bottom: 60px; left: 50%; transform: translateX(-50%); width: 100%; justify-content: center; }
-  .login-time { font-size: 3rem; }
-  .login-clock { top: 20px; right: 20px; }
+  .login-panel { width: 85%; padding: 15px; margin-top: 50px; }
+  .login-avatar-wrapper { width: 80px; height: 80px; }
+  .login-username { font-size: 1.2rem; margin-bottom: 15px; }
+  .login-pw-row { width: 100%; }
+  .user-switcher { bottom: 30px; left: 50%; transform: translateX(-50%); width: 90%; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .user-pill { padding: 5px 10px; font-size: 0.8rem; }
+  .user-pill img { width: 30px; height: 30px; }
+  .login-time { font-size: 2.5rem; }
+  .login-date { font-size: 1rem; }
+  .login-clock { top: 30px; right: 0; left: 0; text-align: center; width: 100%; }
   
   /* Desktop */
   .desktop-icons { 
