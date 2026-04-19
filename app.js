@@ -115,13 +115,14 @@ function createWindow(appId) {
     'skills': 'Technical Skills',
     'terminal': 'Command Prompt',
     'computer': 'My Computer',
+    'paint': 'Paint',
     'recycle': 'Recycle Bin'
   };
   
   const iconMap = {
     'resume': 'fa-file-pdf', 'projects': 'fa-folder-open', 'contact': 'fa-address-card',
     'github': 'fab fa-github', 'skills': 'fa-code', 'terminal': 'fa-terminal',
-    'computer': 'fa-desktop', 'recycle': 'fa-trash'
+    'computer': 'fa-desktop', 'paint': 'fa-palette', 'recycle': 'fa-trash'
   };
 
   win.innerHTML = `
