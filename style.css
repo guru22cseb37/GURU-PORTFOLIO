@@ -197,6 +197,7 @@ body {
   padding: 5px;
   border-radius: 3px;
   border: 1px solid transparent;
+  touch-action: manipulation;
 }
 .desktop-icon:hover {
   background: rgba(255, 255, 255, 0.2);

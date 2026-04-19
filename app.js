@@ -224,6 +224,13 @@ function addTaskbarButton(appId, title, iconClass) {
   tb.appendChild(btn);
 }
 
+function handleIconClick(appId) {
+  if (window.innerWidth <= 768) {
+    if (appId === 'linkedin') openLinkedIn();
+    else openWindow(appId);
+  }
+}
+
 function updateTaskbarButton(appId, isMinimized) {
   const btn = document.getElementById(`tb-btn-${appId}`);
   if (btn) {

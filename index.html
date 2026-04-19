@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Guru Prasad C — Portfolio</title>
   <meta name="description" content="Guru Prasad C — AI Developer & Full Stack Engineer. Interactive Windows 7-style portfolio." />
   <link rel="stylesheet" href="style.css" />
@@ -83,41 +83,40 @@
 <!-- ============================= DESKTOP ============================= -->
 <div id="desktop" class="hidden">
 
-  <!-- Desktop icons -->
   <div class="desktop-icons" id="desktop-icons">
-    <div class="desktop-icon" id="icon-computer" ondblclick="openWindow('computer')">
+    <div class="desktop-icon" id="icon-computer" onclick="handleIconClick('computer')" ondblclick="openWindow('computer')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/my-computer--v1.png" alt="My Computer" /></div>
       <span>My Computer</span>
     </div>
-    <div class="desktop-icon" id="icon-resume" ondblclick="openWindow('resume')">
+    <div class="desktop-icon" id="icon-resume" onclick="handleIconClick('resume')" ondblclick="openWindow('resume')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/pdf.png" alt="Resume" /></div>
       <span>Resume.pdf</span>
     </div>
-    <div class="desktop-icon" id="icon-projects" ondblclick="openWindow('projects')">
+    <div class="desktop-icon" id="icon-projects" onclick="handleIconClick('projects')" ondblclick="openWindow('projects')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/folder-invoices.png" alt="Projects" /></div>
       <span>Projects</span>
     </div>
-    <div class="desktop-icon" id="icon-contact" ondblclick="openWindow('contact')">
+    <div class="desktop-icon" id="icon-contact" onclick="handleIconClick('contact')" ondblclick="openWindow('contact')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/address-book.png" alt="Contact" /></div>
       <span>Contact</span>
     </div>
-    <div class="desktop-icon" id="icon-github" ondblclick="openWindow('github')">
+    <div class="desktop-icon" id="icon-github" onclick="handleIconClick('github')" ondblclick="openWindow('github')">
       <div class="icon-img"><img src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub" /></div>
       <span>GitHub</span>
     </div>
-    <div class="desktop-icon" id="icon-linkedin" ondblclick="openLinkedIn()">
+    <div class="desktop-icon" id="icon-linkedin" onclick="handleIconClick('linkedin')" ondblclick="openLinkedIn()">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn" /></div>
       <span>LinkedIn</span>
     </div>
-    <div class="desktop-icon" id="icon-skills" ondblclick="openWindow('skills')">
+    <div class="desktop-icon" id="icon-skills" onclick="handleIconClick('skills')" ondblclick="openWindow('skills')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/source-code.png" alt="Skills" /></div>
       <span>Skills</span>
     </div>
-    <div class="desktop-icon" id="icon-terminal" ondblclick="openWindow('terminal')">
+    <div class="desktop-icon" id="icon-terminal" onclick="handleIconClick('terminal')" ondblclick="openWindow('terminal')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/console.png" alt="Terminal" /></div>
       <span>Terminal</span>
     </div>
-    <div class="desktop-icon" id="icon-recycle" ondblclick="openWindow('recycle')">
+    <div class="desktop-icon" id="icon-recycle" onclick="handleIconClick('recycle')" ondblclick="openWindow('recycle')">
       <div class="icon-img"><img src="https://img.icons8.com/color/48/000000/recycle-bin.png" alt="Recycle Bin" /></div>
       <span>Recycle Bin</span>
     </div>
