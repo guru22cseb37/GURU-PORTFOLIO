@@ -33,25 +33,12 @@ window.sendAIMessage = async function() {
   msgs.scrollTop = msgs.scrollHeight;
   
   try {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${window.GROQ_API_KEY}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: [
-          {
-            role: "system",
-            content: "You are the AI assistant for Guru Prasad C, a Computer Science Engineer specializing in AI-assisted software development, debugging, and rapid delivery. Answer questions concisely and professionally based on his resume: Studies at Velammal College, CGPA 7.21, skills in Python, FastAPI, React, Node, AI tools (Copilot, Cursor). Projects: VIBE-OPS (AI bug triage), HireSight (AI recruitment), CRM. Be polite, enthusiastic, and try to convince recruiters to hire him. Limit answers to 2-3 short sentences."
-          },
-          {
-            role: "user",
-            content: text
-          }
-        ]
-      })
+      body: JSON.stringify({ message: text })
     });
     
     const data = await response.json();
