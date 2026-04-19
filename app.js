@@ -1,13 +1,27 @@
 // Boot Sequence
 setTimeout(() => {
   document.getElementById('bios-post').classList.add('hidden');
-  document.getElementById('win-starting').classList.remove('hidden');
-  setTimeout(() => {
-    const boot = document.getElementById('boot-screen');
-    boot.style.transition = 'opacity 1s';
-    boot.style.opacity = '0';
-    setTimeout(() => boot.style.display = 'none', 1000);
-  }, 4000);
+  const winStarting = document.getElementById('win-starting');
+  const bootVideo = document.getElementById('boot-video');
+  winStarting.classList.remove('hidden');
+  
+  if (bootVideo) {
+    bootVideo.play().catch(e => console.log("Video play failed:", e));
+    bootVideo.onended = () => {
+      const boot = document.getElementById('boot-screen');
+      boot.style.transition = 'opacity 1s';
+      boot.style.opacity = '0';
+      setTimeout(() => boot.style.display = 'none', 1000);
+    };
+  } else {
+    // Fallback if video is missing
+    setTimeout(() => {
+      const boot = document.getElementById('boot-screen');
+      boot.style.transition = 'opacity 1s';
+      boot.style.opacity = '0';
+      setTimeout(() => boot.style.display = 'none', 1000);
+    }, 4000);
+  }
 }, 3000);
 
 // Audio setup
