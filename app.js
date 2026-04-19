@@ -1,28 +1,50 @@
 // Boot Sequence
-setTimeout(() => {
-  document.getElementById('bios-post').classList.add('hidden');
-  const winStarting = document.getElementById('win-starting');
-  const bootVideo = document.getElementById('boot-video');
-  winStarting.classList.remove('hidden');
-  
-  if (bootVideo) {
-    bootVideo.play().catch(e => console.log("Video play failed:", e));
-    bootVideo.onended = () => {
-      const boot = document.getElementById('boot-screen');
-      boot.style.transition = 'opacity 1s';
-      boot.style.opacity = '0';
-      setTimeout(() => boot.style.display = 'none', 1000);
-    };
-  } else {
-    // Fallback if video is missing
-    setTimeout(() => {
-      const boot = document.getElementById('boot-screen');
-      boot.style.transition = 'opacity 1s';
-      boot.style.opacity = '0';
-      setTimeout(() => boot.style.display = 'none', 1000);
-    }, 4000);
+const biosLines = [
+  "Energy Star (R) Ally",
+  "Copyright (C) 1984-2009, American Megatrends, Inc.",
+  "",
+  "Main Processor : Intel(R) Core(TM) i9 CPU @ 5.00GHz",
+  "Memory Testing : 32768K OK",
+  "",
+  "Detecting Primary Master ... Loading User Profile",
+  "Detecting Primary Slave  ... Initializing Resume Data",
+  "Detecting Secondary Master ... Establishing Network",
+  "Detecting Secondary Slave  ... None",
+  "",
+  "Verifying DMI Pool Data ... success",
+  "Booting from Hard Disk ..."
+];
+
+async function typeBios() {
+  const bios = document.getElementById('bios-post');
+  for (let line of biosLines) {
+    bios.innerHTML += line + "<br/>";
+    // Slightly faster typing for realism
+    await new Promise(r => setTimeout(r, Math.random() * 50 + 20));
   }
-}, 800);
+  bios.innerHTML += '<span class="blink">_</span>';
+  
+  // Wait a bit after typing finishes
+  setTimeout(() => {
+    document.getElementById('bios-post').classList.add('hidden');
+    const winStarting = document.getElementById('win-starting');
+    const bootVideo = document.getElementById('boot-video');
+    winStarting.classList.remove('hidden');
+    
+    if (bootVideo) {
+      bootVideo.play().catch(e => console.log("Video play failed:", e));
+      bootVideo.onended = () => {
+        const boot = document.getElementById('boot-screen');
+        boot.style.transition = 'opacity 1s';
+        boot.style.opacity = '0';
+        setTimeout(() => boot.style.display = 'none', 1000);
+      };
+    }
+  }, 1000);
+}
+
+// Start the sequence
+typeBios();
 
 // Audio setup
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
